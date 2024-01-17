@@ -1,6 +1,6 @@
 class Github {
     constructor() {
-        this.access_token = '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'
+        this.access_token = '';
         this.repos_count = 5;
         this.repos_sort = 'created: asc';
     }
@@ -72,7 +72,7 @@ class Github {
             }
         }
 
-        // 한 달 전보다 이후의 이벤트만 필터링하여 반환합니다.
+        // 3달 전보다 이후의 이벤트만 필터링하여 반환합니다.
         return events.filter(event => {
             const eventDate = new Date(event.created_at);
             return eventDate >= threeMonthsAgo;
