@@ -50,7 +50,7 @@ class UI {
             </div>
             `;
         });
-        output += `<b>Contributions in the last year</b>`
+        output += `<b>Contributions in the 3 month</b>`
 
         document.getElementById('repos').innerHTML = output;
     }
@@ -62,7 +62,7 @@ class UI {
 
         const today = new Date();
         const startDate = new Date();
-        startDate.setMonth(today.getMonth() - 12, 1); // 3개월 전의 첫 날로 설정
+        startDate.setMonth(today.getMonth() - 3, 1); // 3개월 전의 첫 날로 설정
 
         // 모든 날짜에 대한 커밋 카운트를 초기화합니다.
         const commitCounts = {};
