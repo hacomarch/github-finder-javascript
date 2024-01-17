@@ -7,6 +7,9 @@ searchUser.addEventListener('keyup', (e) => {
     const userText = e.target.value;
 
     if(userText !== '') {
+        ui.clearProfile();
+        ui.clearUserPublicEvents();
+
         github.getUser(userText)
             .then(data => {
                 if(data.profile.message === 'Not Found') {
@@ -16,7 +19,15 @@ searchUser.addEventListener('keyup', (e) => {
                     ui.showRepos(data.repos);
                 }
             })
+
+        github.getUserPublicEvents(userText)
+            .then(events => {
+                ui.showUserPublicEvents(events);
+            })
+            .catch(error => console.log(error));
+
     } else {
         ui.clearProfile();
+        ui.clearUserPublicEvents();
     }
 });

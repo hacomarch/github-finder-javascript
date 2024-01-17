@@ -1,21 +1,94 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <style>
+        /* CSS */
+        .contribution-graph {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 10px;
+            background-color: white;
+            overflow-x: auto;
+            /* 가로 스크롤을 위한 설정 */
+        }
+
+        .month-container {
+            display: grid;
+            grid-template-columns: repeat(7, 15px);
+            /* 7일치 컬럼 */
+            grid-gap: 3px;
+            margin-right: 10px;
+            /* 월별 간격 */
+        }
+
+        .contribution-cell {
+            width: 15px;
+            height: 15px;
+            border-radius: 2px;
+            border: 1px solid transparent;
+        }
+
+        /* 커밋 수에 따른 배경색 */
+        .level-1 {
+            background-color: rgba(189, 188, 188, 0.5);
+        }
+
+        .level-2 {
+            background-color: #9be9a8;
+        }
+
+        .level-3 {
+            background-color: #40c463;
+        }
+
+        .level-4 {
+            background-color: #216e39;
+        }
+
+
+        /* 툴팁 스타일 */
+        .contribution-cell:hover:after {
+            content: attr(title);
+            /* 셀의 title 속성을 툴팁 내용으로 사용 */
+            visibility: visible;
+            position: absolute;
+            padding: 4px 8px;
+            background: rgba(97, 97, 97, 0.9);
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            z-index: 1;
+            white-space: nowrap;
+            transform: translateX(-50%);
+        }
+    </style>
     <title>Github Finder</title>
 </head>
+
 <body>
     <nav class="navbar nav-dark bg-primary mb-3">
         <div class="container">
             <a href="#" class="navbar-brand">Github Finder</a>
         </div>
     </nav>
-    
+
     <div class="container searchContainer">
         <div class="search card card-body">
             <h1>Search Github Users</h1>
@@ -24,6 +97,7 @@
         </div>
         <br>
         <div id="profile"></div>
+        <div id="commitListContainer" class="contribution-graph"></div>
     </div>
 
     <footer class="mt-5 p-3 text-center bg-light">
@@ -34,4 +108,5 @@
     <script src="ui.js"></script>
     <script src="app.js"></script>
 </body>
+
 </html>
